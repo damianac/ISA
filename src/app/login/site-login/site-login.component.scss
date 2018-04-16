@@ -5,7 +5,7 @@ body {
 }
 
 mat-card {
-  max-width: 80%;
+  max-width: 30%;
   margin: 2em auto;
 }
 
@@ -13,7 +13,7 @@ mat-toolbar-row {
   justify-content: space-between;
 }
 
-#home {
+#login {
   margin:0 auto;
   display:flex;
   flex-direction:row-reverse;

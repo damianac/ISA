@@ -4,11 +4,15 @@ import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
 /**
- * Cinema Schema
+ * Auditorium Schema
  */
-const CinemaSchema = new mongoose.Schema({
+const AuditoriumSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: true
+  },
+  type: {
+    type: Number,
     required: true
   },
   location: {
@@ -44,35 +48,35 @@ const CinemaSchema = new mongoose.Schema({
 /**
  * Methods
  */
-CinemaSchema.method({
+AuditoriumSchema.method({
 });
 
 /**
  * Statics
  */
-CinemaSchema.statics = {
+AuditoriumSchema.statics = {
   /**
-   * Get Cinema
-   * @param {ObjectId} id - The objectId of cinema.
-   * @returns {Promise<Cinema, APIError>}
+   * Get Auditorium
+   * @param {ObjectId} id - The objectId of auditorium.
+   * @returns {Promise<Auditorium, APIError>}
    */
   get(id) {
     return this.findById(id)
       .exec()
-      .then((cinema) => {
-        if (cinema) {
-          return cinema;
+      .then((auditorium) => {
+        if (auditorium) {
+          return auditorium;
         }
-        const err = new APIError('No such cinema exists!', httpStatus.NOT_FOUND);
+        const err = new APIError('No such auditorium exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
       });
   },
 
   /**
-   * List cinemas in descending order of 'createdAt' timestamp.
-   * @param {number} skip - Number of cinemas to be skipped.
-   * @param {number} limit - Limit number of cinemas to be returned.
-   * @returns {Promise<Cinema[]>}
+   * List auditoriums in descending order of 'createdAt' timestamp.
+   * @param {number} skip - Number of auditoriums to be skipped.
+   * @param {number} limit - Limit number of auditoriums to be returned.
+   * @returns {Promise<Auditorium[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
     return this.find()
@@ -84,6 +88,6 @@ CinemaSchema.statics = {
 };
 
 /**
- * @typedef Cinema
+ * @typedef Auditorium
  */
-export default mongoose.model('Cinema', CinemaSchema);
+export default mongoose.model('Auditorium', AuditoriumSchema);
